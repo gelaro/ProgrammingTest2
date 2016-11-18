@@ -45,7 +45,7 @@ public class Registration {
     public int countByCourseID(String courseID) {
         int count = 0;
         for (int i = 0;i < requestList.size();i++){
-            if (requestList.get(i).getCourseID().equals(courseID)) {
+            if (requestList.get(i).getCourseID().matches(courseID)) {
                 count++;
             }
         }
@@ -56,7 +56,7 @@ public class Registration {
     public int countByStudentID(String studentID) {
         int count = 0;
         for (int i = 0;i < requestList.size();i++){
-            if (requestList.get(i).getStudentID().equals(studentID)) {
+            if (requestList.get(i).getStudentID().matches(studentID)) {
                 count++;
             }
         }
