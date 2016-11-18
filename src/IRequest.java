@@ -3,8 +3,9 @@ public interface IRequest {
     public static final int REQUEST_DROP = 2;
 
     public String getStudentID();
-    public String setStudentID(String studentID);
+    public void setStudentID(String studentID);
     public String getCourseID();
     public void setCourseID(String courseID);
     public int getRequestType();
+    public void setType(int type);
 }

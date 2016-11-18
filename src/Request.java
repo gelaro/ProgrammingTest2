@@ -1,55 +1,61 @@
 public class Request implements IRequest {
-    private String studentID,courseID;
+    private String studentID, courseID;
     private int type;
-    public static IRequest createRequest(int type, String studentID, String courseID) {
-        getStudentID(studentID);
-        getCourseID(courseID);
-        getRequestType(type);
+
+    public Request(String studentID, String courseID, int type) {
     }
 
-    protected Request()
-    {
+    public static IRequest createRequest(int type, String studentID, String courseID) {
+        if (type == REQUEST_ADD) return new AddRequest(studentID, courseID);
+        else return new DropRequest(studentID, courseID);
+    }
+
+    protected Request() {
         throw new UnsupportedOperationException("Please override this method");
     }
 
     @Override
     public String getStudentID() {
-        return getStudentID();
+        return studentID;
     }
 
     @Override
-    public String setStudentID(String studentID) {
-        String rx = "[0-9]{9,}";
-        if(studentID != null){
-            if(studentID.matches(rx)){
+    public void setStudentID(String studentID) {
+        String rx = "[0-9]{6,}";
+        if (studentID != null) {
+            if (courseID.matches(rx)) {
                 this.studentID = studentID;
-                return studentID;
+            } else {
+                System.out.println("invalid studentID");
             }
-        }else{
-            System.out.println("invalid studentID");
         }
     }
 
     @Override
     public String getCourseID() {
-        return getCourseID();
+        return courseID;
     }
 
     @Override
-    public void setCourseID(String courseID) {
+    public void setCourseID (String courseID){
         String rx = "[0-9]{6,}";
-        if(courseID != null){
-            if(courseID.matches(rx)) {
+        if (courseID != null) {
+            if (courseID.matches(rx)) {
                 this.courseID = courseID;
-                return courseID;
             }
-        }else {
+        } else {
             System.out.println("invalid courseID");
         }
     }
 
     @Override
-    public int getRequestType() {
-        return getRequestType();
+    public int getRequestType () {
+        return type;
+    }
+
+    public void setType(int type) {
+        if (type <= 0 || type >= 3)
+            throw new RuntimeException("invalid Type");
+        this.type = type;
     }
 }
