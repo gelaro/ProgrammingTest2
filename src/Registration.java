@@ -14,15 +14,15 @@ public class Registration {
     // Drop existing course, only request with existing studentID/courseID
     // is a valid request. Invalid request will cause an exception
     public void drop(IRequest request) {
-        if (!exists(request)) requestList.add(request);
-        else System.out.println("You never request add this class!!!");
+        IRequest requestCheck = Request.createRequest(request.REQUEST_ADD,request.getStudentID(),request.getCourseID());
+        if(exists(requestCheck)){
+            if (!exists(request)) requestList.add(request);
+        }else System.out.println("You never request add this class!!!");
     }
 
     // Check whether the request is in repository.
     public boolean exists(IRequest request) {
-        IRequest requestCheck = Request.createRequest(1,request.getStudentID(),request.getCourseID());
-        if (requestList.indexOf(requestCheck) != -1) return true;
-        else return false;
+        return requestList.contains(request);
     }
 
     // Count all requests
@@ -55,10 +55,9 @@ public class Registration {
     // Count request by student ID
     public int countByStudentID(String studentID) {
         int count = 0;
-        for (int i = 0;i < requestList.size();i++){
-            if (requestList.get(i).getStudentID().matches(studentID)) {
-                count++;
-            }
+
+        for(IRequest r : requestList) {
+            if(r.getStudentID().equals(studentID)) count++;
         }
         return count;
     }

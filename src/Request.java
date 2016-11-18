@@ -54,8 +54,11 @@ public class Request implements IRequest {
     }
 
     public void setType(int type) {
-        if (type <= 0 || type >= 3)
-            throw new RuntimeException("invalid Type");
-        this.type = type;
+
+        if(type == IRequest.REQUEST_DROP || type == IRequest.REQUEST_ADD) {
+            this.type = type;
+        } else {
+            throw new Exception("Invalid type")
+        }
     }
 }
