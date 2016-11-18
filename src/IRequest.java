@@ -1,6 +1,3 @@
-/**
- * Created by pruet on 18/11/2559.
- */
 public interface IRequest {
     public static final int REQUEST_ADD = 1;
     public static final int REQUEST_DROP = 2;
