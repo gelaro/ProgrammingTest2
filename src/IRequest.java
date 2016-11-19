@@ -7,5 +7,5 @@ public interface IRequest {
     public String getCourseID();
     public void setCourseID(String courseID);
     public int getRequestType();
-    public void setType(int type);
+    public void setType(int type) throws Exception;
 }

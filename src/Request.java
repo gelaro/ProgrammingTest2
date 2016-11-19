@@ -53,12 +53,12 @@ public class Request implements IRequest {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(int type) throws Exception {
 
         if(type == IRequest.REQUEST_DROP || type == IRequest.REQUEST_ADD) {
             this.type = type;
         } else {
-            throw new Exception("Invalid type")
+            throw new Exception("Invalid type");
         }
     }
 }
